@@ -30,7 +30,10 @@ class ReservationController extends GetxController {
   var crieria = Rxn<String>();
   var category = Rxn<String>();
   var listChosen = <NumAvailable>[].obs;
+  var rerseveListChosen = <Reservation>[].obs;
   var reservasions = <Reservation>[].obs;
+  var process_loads = false.obs;
+  var process_add_creations = false.obs;
 
   create() async {
     process_create.value = true;
@@ -67,21 +70,27 @@ class ReservationController extends GetxController {
       popSnackSuccess(message: "Reservation added successfully!");
       clearFrom();
     }).onError((DioException error, stackTrace) {
-      print("error");
-      process_create.value = false;
+      //print("error");
       print("${error.response!.data}");
+      process_create.value = false;
     }).whenComplete(() {
       process_create.value = false;
     });
   }
 
-  getList() {
+  getList() async {
+    process_loads.value = true;
     ReserVationApi.getList(Get.find<AuthController>().user.value!.id!)
         .then((value) async {
+      print(value);
       reservasions.value = await Reservation.reservation(value.data);
+      process_loads.value = false;
     }).onError((DioException error, stackTrace) {
+      process_loads.value = false;
       print(error.response!.data);
-    }).whenComplete(() {});
+    }).whenComplete(() {
+      process_loads.value = false;
+    });
   }
 
   findNumbers() {
@@ -125,6 +134,37 @@ class ReservationController extends GetxController {
     }).whenComplete(() {
       process_load_avail.value = false;
     });
+  }
+
+  addCreation() async {
+    process_add_creations.value = true;
+
+    var arr = <Map<String, dynamic>>[];
+    rerseveListChosen.forEach((element) {
+      Map<String, dynamic> tp = {
+        "msisdn": element.msisdn,
+        "iccid": element.iccid,
+        "idRes": element.idRsv,
+        "createdAt": DateTime.now().toIso8601String(),
+        "status": 0
+      };
+      arr.add(tp);
+    });
+    ReserVationApi.postCreation(arr).then((value) {
+      process_add_creations.value = false;
+      Get.back();
+      rerseveListChosen.value.clear();
+      getList();
+      popSnackSuccess(
+          message: value.data['message'], duration: const Duration(seconds: 7));
+      print("created");
+
+      //Get.back();
+    }).onError((DioException error, stackTrace) {
+      popSnackError(message: "An error occurred");
+      process_add_creations.value = false;
+      print('${error.response!.data}');
+    }).whenComplete(() => process_add_creations.value = false);
   }
 
   @override

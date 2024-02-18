@@ -28,39 +28,39 @@ class InputTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-      child: Container(
-        child: Material(
-          elevation: 3.0,
-          shadowColor: primaryColor,
-          borderRadius: BorderRadius.circular(15.0),
-          child: Padding(
-            padding: const EdgeInsets.only(right: 20.0, left: 15.0),
-            child: TextFormField(
-                controller: controller,
-                obscureText: obscureText,
-                autofocus: false,
-                keyboardType: keyboardType,
-                readOnly: readOnly,
-                decoration: InputDecoration(
-                  prefix: Text(prefix),
-                  suffix: suffix,
-                  icon: Icon(
-                    icon,
-                    color: primaryColor,
-                    size: 30.0, /*Color(0xff224597)*/
-                  ),
-                  labelText: labelText,
-                  labelStyle:
-                      const TextStyle(color: Colors.black54, fontSize: 18.0),
-                  hintText: '',
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black54),
-                  ),
-                  border: InputBorder.none,
+      child: Material(
+        color: Colors.white.withOpacity(.1),
+        borderRadius: BorderRadius.circular(7.0),
+        child: Padding(
+          padding: const EdgeInsets.only(right: 20.0, left: 15.0),
+          child: TextFormField(
+              controller: controller,
+              obscureText: obscureText,
+              autofocus: false,
+              keyboardType: keyboardType,
+              cursorColor: Colors.white,
+              readOnly: readOnly,
+              style: const TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                focusedErrorBorder: InputBorder.none,
+                disabledBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                prefix: Text(prefix),
+                suffix: suffix,
+                icon: Icon(
+                  icon,
+                  color: Colors.white,
+                  size: 20.0, /*Color(0xff224597)*/
                 ),
-                validator: validator),
-          ),
+                labelText: labelText,
+                labelStyle:
+                    const TextStyle(color: Colors.white38, fontSize: 18.0),
+                hintText: '',
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                border: InputBorder.none,
+              ),
+              validator: validator),
         ),
       ),
     );

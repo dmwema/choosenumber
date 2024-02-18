@@ -1,4 +1,5 @@
 import 'package:choosenumber/controller/imagePickerController.dart';
+import 'package:choosenumber/controller/reservation_controller.dart';
 import 'package:choosenumber/res/strings.dart';
 import 'package:choosenumber/screens/homeScreen.dart';
 import 'package:dio/dio.dart';
@@ -43,6 +44,7 @@ void main() async {
 
 refreshToken() {
   AuthController pagesController = Get.put(AuthController());
+
   if (pagesController.user.value != null) {
     print("refreshing... from main");
     pagesController.refreshToken();
@@ -52,6 +54,7 @@ refreshToken() {
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   AuthController pagesController = Get.put(AuthController());
+  ReservationController resController = Get.put(ReservationController());
   //ZoneController zoneController = Get.put(ZoneController());
   //ImagePickerController imageController = Get.put(ImagePickerController());
   //var aboneController = Get.put(AboneController());

@@ -2,6 +2,7 @@ import 'package:choosenumber/constants.dart';
 import 'package:choosenumber/controller/auth_controller.dart';
 import 'package:choosenumber/controller/reservation_controller.dart';
 import 'package:choosenumber/res/colors.dart';
+import 'package:choosenumber/screens/reservationsScreen.dart';
 import 'package:choosenumber/utils/sizes.dart';
 import 'package:choosenumber/widgets/card_option.dart';
 import 'package:choosenumber/widgets/inputParentWidget.dart';
@@ -9,7 +10,6 @@ import 'package:choosenumber/widgets/inputTextWidget.dart';
 import 'package:choosenumber/widgets/loadingIndicator.dart';
 import 'package:choosenumber/widgets/radio_options.dart';
 import 'package:choosenumber/widgets/submitButton.dart';
-import 'package:choosenumber/widgets/text_styled.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -142,12 +142,10 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              Text('${authController.user.value!.name},',
-                      style: secondaryTextStyle())
+              Text('Welcome,', style: secondaryTextStyle())
                   .paddingOnly(left: 16, right: 16),
-              /*Text('Benay Mampuya,', style: secondaryTextStyle())
-                      .paddingOnly(left: 16, right: 16),*/
-              Text('Welcome', style: boldTextStyle(size: 20))
+              Text('${authController.user.value!.name}',
+                  style: boldTextStyle(size: 20))
                   .paddingOnly(left: 16, right: 16),
               20.height,
 
@@ -195,7 +193,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   )
                                 ],
                               ),
-                              textheader: "Criteria"),
+                              textheader: "Criteria"
+                          ),
                           8.height,
                           Card(
                               shape: RoundedRectangleBorder(
@@ -289,7 +288,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                               text: 'Search',
                                               bgColor: primaryColor,
                                             );
-                                    })
+                                    }),
+                                    20.height,
+                                    SubmitButton(
+                                      onPressed: () {
+                                        Get.to(() => ReservationsScreen());
+                                      },
+                                      text: 'Reservations List',
+                                      bgColor: primaryBlack,
+                                    )
                                   ],
                                 ),
                               )),

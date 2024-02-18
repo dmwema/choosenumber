@@ -20,6 +20,20 @@ class ReserVationApi {
     // return await http.get(Configs.http.GET_PING, headers: Configs.http.headers);
   }
 
+  static Future<Response> postCreation(
+      List<Map<String, dynamic>> creations) async {
+    print(AppUtils.http.CREATION_LIST);
+
+    var token = GetStorage().read("token");
+    AppUtils.http.headers['Authorization'] = "Bearer $token";
+    return await dio.post(
+      AppUtils.http.CREATION_LIST,
+      data: creations,
+      options: Options(headers: AppUtils.http.headers, followRedirects: true),
+    );
+    // return await http.get(Configs.http.GET_PING, headers: Configs.http.headers);
+  }
+
   static Future<Response> FindNumbers(
       String criteria, String val, String? category) async {
     var token = GetStorage().read("token");
@@ -37,6 +51,7 @@ class ReserVationApi {
   static Future<Response> getList(String id) async {
     var token = GetStorage().read("token");
     AppUtils.http.headers['Authorization'] = "Bearer $token";
+    print(AppUtils.http.RESERVATION_BY_USER(id));
     return await dio.get(
       AppUtils.http.RESERVATION_BY_USER(id),
       options: Options(headers: AppUtils.http.headers),

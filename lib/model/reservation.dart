@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Reservation {
   int? idRsv;
   int? idUser;
@@ -19,28 +21,32 @@ class Reservation {
   String? idnat;
   String? adressCompany;
   String? numberPurpose;
+  bool? selected;
+  TextEditingController iccidController = TextEditingController();
 
-  Reservation(
-      {this.idRsv,
-      this.adressCompany,
-      this.category,
-      this.clientAdress,
-      this.clientCurrentMobileNumber,
-      this.clientEmailAdress,
-      this.clientFirstName,
-      this.clientLastName,
-      this.clientMiddleName,
-      this.dateCancelReservation,
-      this.dateIccidUpdate,
-      this.dateReservation,
-      this.iccid,
-      this.idUser,
-      this.idnat,
-      this.msisdn,
-      this.numberPurpose,
-      this.rccm,
-      this.referenceId,
-      this.statusReservation});
+  Reservation({
+    this.idRsv,
+    this.adressCompany,
+    this.category,
+    this.clientAdress,
+    this.clientCurrentMobileNumber,
+    this.clientEmailAdress,
+    this.clientFirstName,
+    this.clientLastName,
+    this.clientMiddleName,
+    this.dateCancelReservation,
+    this.dateIccidUpdate,
+    this.dateReservation,
+    this.iccid,
+    this.idUser,
+    this.idnat,
+    this.msisdn,
+    this.numberPurpose,
+    this.rccm,
+    this.referenceId,
+    this.statusReservation,
+    this.selected,
+  });
   factory Reservation.fromJson(Map<String, dynamic> json) {
     return Reservation(
       idRsv: json['idRsv'],
@@ -63,6 +69,7 @@ class Reservation {
       rccm: json['rccm'],
       referenceId: json['referenceId'],
       statusReservation: json['statusReservation'],
+      selected: false,
     );
   }
   Map<String, dynamic> toJson() {

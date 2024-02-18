@@ -84,6 +84,7 @@ class _Http {
   String POST_FORGOT_RESET = ACCOUNT_URL + 'password/change';
   String RESERVATION = RESERVATION_URL;
   String RESERVATION_BY_USER(String id) => RESERVATION_URL + "by-user/$id";
+  String CREATION_LIST = CREATION_URL + "list";
 
   String chooseNumber(String criteria, String val, String? category) {
     if (category == null) {

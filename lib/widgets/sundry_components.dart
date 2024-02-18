@@ -65,7 +65,7 @@ popSnack(
   );
 }
 
-popSnackError(
+  popSnackError(
     {String title = "Erreur",
     String? message,
     String buttonText = "OK",

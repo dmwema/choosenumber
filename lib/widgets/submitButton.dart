@@ -14,7 +14,7 @@ class SubmitButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 50.0,
       child: ElevatedButton(
         onPressed: onPressed,
@@ -22,24 +22,18 @@ class SubmitButton extends StatelessWidget {
           primary: Colors.transparent,
           elevation: 0.0,
           minimumSize: Size(MediaQuery.of(context).size.width, 150),
-          padding: EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 25),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(0)),
           ),
         ),
         child: Ink(
           decoration: BoxDecoration(
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: bgColor,
-                    offset: const Offset(1.1, 1.1),
-                    blurRadius: 10.0),
-              ],
               color: bgColor, // Color(0xffF05945),
-              borderRadius: BorderRadius.circular(12.0)),
+              borderRadius: BorderRadius.circular(7.0)),
           child: Container(
             alignment: Alignment.center,
-            child: textStyled(text, 25, primaryWhite, primaryColor),
+            child: textStyled(text, 18, primaryColor, primaryColor),
           ),
         ),
       ),

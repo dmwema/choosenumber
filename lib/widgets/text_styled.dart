@@ -8,13 +8,6 @@ Widget textStyled(String text, double size, Color color, Color shadowColor) {
       fontFamily: 'Segoe UI',
       fontSize: size,
       fontWeight: FontWeight.bold,
-      shadows: [
-        Shadow(
-          color: shadowColor,
-          offset: const Offset(0, 3),
-          blurRadius: 6,
-        )
-      ],
     ),
   );
 }

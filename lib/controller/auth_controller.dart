@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:choosenumber/controller/reservation_controller.dart';
 import 'package:choosenumber/model/newUser.dart';
 import 'package:choosenumber/res/colors.dart';
 import 'package:choosenumber/res/strings.dart';
@@ -171,7 +172,8 @@ class AuthController extends GetxController {
       print(GetStorage().read("zoneId"));
 
       isLoggedIn.value = true;
-      refreshToken();
+      //refreshToken();
+      Get.find<ReservationController>().getList();
       //getMyUsers();
       //refreshToken();
       Get.offAll(() => const HomeScreen(),
